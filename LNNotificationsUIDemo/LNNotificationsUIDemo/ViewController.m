@@ -66,6 +66,7 @@
 	[[LNNotificationCenter defaultCenter] registerApplicationWithIdentifier:@"456" name:@"Notifications Demo App 2" icon:[UIImage imageNamed:@"DemoApp2Icon"] defaultSettings:[LNNotificationAppSettings defaultNotificationAppSettings]];
 	[[LNNotificationCenter defaultCenter] registerApplicationWithIdentifier:@"789" name:@"Notifications Demo App 3" icon:[UIImage imageNamed:@"DemoApp3Icon"] defaultSettings:[LNNotificationAppSettings defaultNotificationAppSettings]];
 	
+   
 	LNNotification* notification = [LNNotification notificationWithMessage:@"Welcome to LNNotificationsUI!"];
 	notification.title = @"Hello World!";
 	notification.soundName = @"demo.aiff";
@@ -75,6 +76,13 @@
 	}];
 	
 	[[LNNotificationCenter defaultCenter] presentNotification:notification forApplicationIdentifier:@"123"];
+	[[LNNotificationCenter defaultCenter] addObserver:self forKeyPath:@"isNotificationCenterActive" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isNotificationCenterActive"]) {
+        NSLog(@"change = %@", change);
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

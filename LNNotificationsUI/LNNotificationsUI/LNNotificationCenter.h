@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, LNNotificationBannerStyle) {
  The notifications banner style. Default is dark.
  */
 @property (nonatomic, assign) LNNotificationBannerStyle notificationsBannerStyle;
-
+@property (nonatomic, readonly) BOOL isNotificationCenterActive;
 /**
  Registers an application with the notification center. Name and icon will be used for notification without titles and icons.
 

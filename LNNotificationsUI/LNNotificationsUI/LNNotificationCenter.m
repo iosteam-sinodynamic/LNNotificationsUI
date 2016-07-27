@@ -72,7 +72,7 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 	BOOL _wantsBannerStyleChange;
 	
 	BOOL _currentlyAnimating;
-	
+    BOOL _isNotificationCenterActive;
 	AVAudioPlayer* _currentAudioPlayer;
 	
 	id _orientationHandler;
@@ -132,6 +132,16 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 - (LNNotificationBannerStyle)notificationsBannerStyle
 {
 	return _bannerStyle;
+}
+
+-(BOOL)isNotificationCenterActive {
+    return _isNotificationCenterActive;
+}
+
+- (void)setIsNotificationCenterActive:(BOOL)isNotificationCenterActive {
+//    [self willChangeValueForKey:@"isNotificationCenterActive"];
+    _isNotificationCenterActive = isNotificationCenterActive;
+    [self didChangeValueForKey:@"isNotificationCenterActive"];
 }
 
 - (void)setNotificationsBannerStyle:(LNNotificationBannerStyle)bannerStyle
@@ -242,6 +252,7 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 		_notificationWindow = [[LNNotificationBannerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds style:_bannerStyle];
 		
 		[_notificationWindow setHidden:NO];
+        [self setIsNotificationCenterActive:YES];
 	}
 	
 	if(_currentlyAnimating)
@@ -268,6 +279,8 @@ static NSString *const _LNSettingsKey = @"LNNotificationSettingsKey";
 			//Clean up notification window.
 			_notificationWindow.hidden = YES;
 			_notificationWindow = nil;
+            
+            [self setIsNotificationCenterActive:NO];
 			
 			[self _handleBannerCanChange];
 			
