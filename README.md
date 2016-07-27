@@ -7,6 +7,8 @@
 
 See a video [here](https://vimeo.com/105395794).
 
+<span class="badge-paypal"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BR68NJEJXGWL6" title="Donate to this project using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal Donation Button" /></a></span>
+
 ## Features
 
 * Native look & feel
@@ -26,6 +28,14 @@ See a video [here](https://vimeo.com/105395794).
 * Xcode 6 framework
 
 ## Adding to Your Project
+
+###Carthage
+
+Add the following to your Cartfile:
+
+```github "LeoNatan/LNPopupController"```
+
+###Manual
 
 Drag the `LNNotificationsUI.xcodeproj` project to your project, and add `LNNotificationsUI.framework` to **Embedded Binaries** in your project target's **General** tab. Xcode should sort everything else on its own.
 
